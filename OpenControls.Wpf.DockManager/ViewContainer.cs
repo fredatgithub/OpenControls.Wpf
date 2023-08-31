@@ -24,8 +24,8 @@ namespace OpenControls.Wpf.DockManager
             TabHeaderControl.ItemsSource = _items;
             TabHeaderControl.DisplayMemberPath = "Value.Title";
             Children.Add(TabHeaderControl);
-            Grid.SetRow(TabHeaderControl, row);
-            Grid.SetColumn(TabHeaderControl, column);
+      SetRow(TabHeaderControl, row);
+      SetColumn(TabHeaderControl, column);
         }
 
         private void TabHeaderControl_TabMouseDown(object sender, EventArgs e)

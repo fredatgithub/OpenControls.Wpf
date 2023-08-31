@@ -38,7 +38,7 @@ namespace OpenControls.Wpf.SurfacePlot.TextRenderer
             // Measure the size of each character when written to a bitmap
             using (System.Drawing.Bitmap bitmap = new Bitmap(100, 100, System.Drawing.Imaging.PixelFormat.Format32bppArgb))
             {
-                using (var graphics = System.Drawing.Graphics.FromImage(bitmap))
+                using (var graphics = Graphics.FromImage(bitmap))
                 {
                     char c = (char)0;
                     float previousY = 0;
@@ -76,7 +76,7 @@ namespace OpenControls.Wpf.SurfacePlot.TextRenderer
             // Now create the character bitmap
             using (System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(TextureWidth, TextureHeight, System.Drawing.Imaging.PixelFormat.Format32bppArgb))
             {
-                using (var graphics = System.Drawing.Graphics.FromImage(bitmap))
+                using (var graphics = Graphics.FromImage(bitmap))
                 {
                     graphics.Clear(_backgroundColour);
 

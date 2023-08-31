@@ -15,7 +15,7 @@ namespace OpenControls.Wpf.DockManager
             Border.SetResourceReference(Border.BorderBrushProperty, "ToolPaneBorderBrush");
             Border.SetResourceReference(Border.BorderThicknessProperty, "ToolPaneBorderThickness");
 
-            VerticalAlignment = System.Windows.VerticalAlignment.Stretch;
+            VerticalAlignment = VerticalAlignment.Stretch;
             HorizontalAlignment = HorizontalAlignment.Stretch;
 
             ColumnDefinition columnDefinition = new ColumnDefinition();
@@ -79,27 +79,27 @@ namespace OpenControls.Wpf.DockManager
             HeaderBorder.SetResourceReference(Border.BorderThicknessProperty, "ToolPaneHeaderBorderThickness");
             IsHighlighted = false;
 
-            Grid.SetRow(HeaderBorder, 1);
-            Grid.SetColumn(HeaderBorder, 1);
-            Grid.SetColumnSpan(HeaderBorder, ColumnDefinitions.Count - 2);
+      SetRow(HeaderBorder, 1);
+      SetColumn(HeaderBorder, 1);
+      SetColumnSpan(HeaderBorder, ColumnDefinitions.Count - 2);
             Children.Add(HeaderBorder);
 
             _titleLabel = new Label();
             _titleLabel.FontSize = 12;
             _titleLabel.Padding = new Thickness(4, 0, 0, 0);
             _titleLabel.VerticalAlignment = VerticalAlignment.Center;
-            _titleLabel.Background = System.Windows.Media.Brushes.Transparent;
-            _titleLabel.Foreground = System.Windows.Media.Brushes.White;
-            Grid.SetRow(_titleLabel, 1);
-            Grid.SetColumn(_titleLabel, 1);
+            _titleLabel.Background = Brushes.Transparent;
+            _titleLabel.Foreground = Brushes.White;
+      SetRow(_titleLabel, 1);
+      SetColumn(_titleLabel, 1);
             Children.Add(_titleLabel);
 
             _commandsButton = new Button();
             _commandsButton.VerticalAlignment = VerticalAlignment.Center;
             _commandsButton.SetResourceReference(StyleProperty, "ToolPaneCommandsButtonStyle");
             _commandsButton.Click += delegate { DisplayGeneralMenu(); };
-            Grid.SetRow(_commandsButton, 1);
-            Grid.SetColumn(_commandsButton, 4);
+      SetRow(_commandsButton, 1);
+      SetColumn(_commandsButton, 4);
             Children.Add(_commandsButton);
 
             _pinButton = new Button();
@@ -107,27 +107,27 @@ namespace OpenControls.Wpf.DockManager
             _pinButton.LayoutTransform = new System.Windows.Media.RotateTransform();
             _pinButton.SetResourceReference(StyleProperty, "ToolPanePinButtonStyle");
             _pinButton.Click += PinButton_Click;
-            Grid.SetRow(_pinButton, 1);
-            Grid.SetColumn(_pinButton, 6);
+      SetRow(_pinButton, 1);
+      SetColumn(_pinButton, 6);
             Children.Add(_pinButton);
 
             _closeButton = new Button();
             _closeButton.VerticalAlignment = VerticalAlignment.Center;
             _closeButton.SetResourceReference(StyleProperty, "ToolPaneCloseButtonStyle");
-            Grid.SetRow(_closeButton, 1);
-            Grid.SetColumn(_closeButton, 8);
-            Panel.SetZIndex(_closeButton, 99);
+      SetRow(_closeButton, 1);
+      SetColumn(_closeButton, 8);
+      SetZIndex(_closeButton, 99);
             Children.Add(_closeButton);
             _closeButton.Click += delegate { FireCloseRequest(); };
 
             IViewContainer.SelectionChanged += DocumentContainer_SelectionChanged;
-            Grid.SetRow(IViewContainer as System.Windows.UIElement, 2);
-            Grid.SetColumn(IViewContainer as System.Windows.UIElement, 1);
-            Grid.SetColumnSpan(IViewContainer as System.Windows.UIElement, ColumnDefinitions.Count - 2);
+      SetRow(IViewContainer as System.Windows.UIElement, 2);
+      SetColumn(IViewContainer as System.Windows.UIElement, 1);
+      SetColumnSpan(IViewContainer as System.Windows.UIElement, ColumnDefinitions.Count - 2);
 
-            _titleLabel.SetResourceReference(Label.FontSizeProperty, "ToolPaneHeaderFontSize");
-            _titleLabel.SetResourceReference(Label.FontFamilyProperty, "ToolPaneHeaderFontFamily");
-            _titleLabel.SetResourceReference(Label.PaddingProperty, "ToolPaneHeaderTitlePadding");
+            _titleLabel.SetResourceReference(Control.FontSizeProperty, "ToolPaneHeaderFontSize");
+            _titleLabel.SetResourceReference(Control.FontFamilyProperty, "ToolPaneHeaderFontFamily");
+            _titleLabel.SetResourceReference(Control.PaddingProperty, "ToolPaneHeaderTitlePadding");
         }
 
         public void HideCommandsButton()
@@ -192,7 +192,7 @@ namespace OpenControls.Wpf.DockManager
             if (pt.Y <= HeaderBorder.ActualHeight)
             {
                 _mouseDownPosition = pt;
-                System.Windows.Input.Mouse.Capture(this);
+        Mouse.Capture(this);
             }
             base.OnMouseLeftButtonDown(e);
         }
@@ -200,13 +200,13 @@ namespace OpenControls.Wpf.DockManager
         protected override void OnMouseLeftButtonUp(MouseButtonEventArgs e)
         {
             base.OnMouseLeftButtonUp(e);
-            System.Windows.Input.Mouse.Capture(this, CaptureMode.None);
+      Mouse.Capture(this, CaptureMode.None);
         }
 
         protected override void OnMouseMove(MouseEventArgs e)
         {
             base.OnMouseMove(e);
-            if (System.Windows.Input.Mouse.Captured == this)
+            if (Mouse.Captured == this)
             {
                 Point mousePosition = e.GetPosition(this);
                 double xdiff = mousePosition.X - _mouseDownPosition.X;
@@ -215,7 +215,7 @@ namespace OpenControls.Wpf.DockManager
                 {
 
                     FireFloat(true);
-                    System.Windows.Input.Mouse.Capture(this, CaptureMode.None);
+          Mouse.Capture(this, CaptureMode.None);
                 }
             }
         }

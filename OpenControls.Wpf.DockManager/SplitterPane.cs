@@ -37,8 +37,8 @@ namespace OpenControls.Wpf.DockManager
                 _gridSplitter.VerticalAlignment = VerticalAlignment.Center;
                 _gridSplitter.HorizontalAlignment = HorizontalAlignment.Stretch;
                 _gridSplitter.SetResourceReference(HeightProperty, "SplitterWidth");
-                Grid.SetRow(_gridSplitter, 1);
-                Grid.SetColumn(_gridSplitter, 0);
+        SetRow(_gridSplitter, 1);
+        SetColumn(_gridSplitter, 0);
             }
             else
             {
@@ -53,8 +53,8 @@ namespace OpenControls.Wpf.DockManager
                 _gridSplitter.VerticalAlignment = VerticalAlignment.Stretch;
                 _gridSplitter.HorizontalAlignment = HorizontalAlignment.Center;
                 _gridSplitter.SetResourceReference(WidthProperty, "SplitterWidth");
-                Grid.SetRow(_gridSplitter, 0);
-                Grid.SetColumn(_gridSplitter, 1);
+        SetRow(_gridSplitter, 0);
+        SetColumn(_gridSplitter, 1);
             }
         }
 
@@ -78,8 +78,8 @@ namespace OpenControls.Wpf.DockManager
                     column = 2;
                 }
             }
-            Grid.SetRow(frameworkElement, row);
-            Grid.SetColumn(frameworkElement, column);
+      SetRow(frameworkElement, row);
+      SetColumn(frameworkElement, column);
         }
 
         public double SplitterWidth

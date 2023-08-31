@@ -33,13 +33,13 @@ namespace OpenControls.Wpf.DockManager
             //FloatingToolPaneGroups = new List<IFloatingPane>();
             //FloatingDocumentPaneGroups = new List<IFloatingPane>();
 
-            RowDefinitions.Add(new RowDefinition() { Height = new System.Windows.GridLength(1, System.Windows.GridUnitType.Auto) });
-            RowDefinitions.Add(new RowDefinition() { Height = new System.Windows.GridLength(1, System.Windows.GridUnitType.Star) });
-            RowDefinitions.Add(new RowDefinition() { Height = new System.Windows.GridLength(1, System.Windows.GridUnitType.Auto) });
+            RowDefinitions.Add(new RowDefinition() { Height = new System.Windows.GridLength(1, GridUnitType.Auto) });
+            RowDefinitions.Add(new RowDefinition() { Height = new System.Windows.GridLength(1, GridUnitType.Star) });
+            RowDefinitions.Add(new RowDefinition() { Height = new System.Windows.GridLength(1, GridUnitType.Auto) });
 
-            ColumnDefinitions.Add(new ColumnDefinition() { Width = new System.Windows.GridLength(1, System.Windows.GridUnitType.Auto) });
-            ColumnDefinitions.Add(new ColumnDefinition() { Width = new System.Windows.GridLength(1, System.Windows.GridUnitType.Star) });
-            ColumnDefinitions.Add(new ColumnDefinition() { Width = new System.Windows.GridLength(1, System.Windows.GridUnitType.Auto) });
+            ColumnDefinitions.Add(new ColumnDefinition() { Width = new System.Windows.GridLength(1, GridUnitType.Auto) });
+            ColumnDefinitions.Add(new ColumnDefinition() { Width = new System.Windows.GridLength(1, GridUnitType.Star) });
+            ColumnDefinitions.Add(new ColumnDefinition() { Width = new System.Windows.GridLength(1, GridUnitType.Auto) });
             CreateToolListBoxes();
 
             Application.Current.MainWindow.LocationChanged += MainWindow_LocationChanged;
@@ -54,7 +54,7 @@ namespace OpenControls.Wpf.DockManager
                 return;
             }
 
-            Point cursorPoint = OpenControls.Wpf.Utilities.Windows.GetCursorPosition();
+            Point cursorPoint = Utilities.Windows.GetCursorPosition();
             Point topLeftPoint = _root.PointToScreen(new Point(0, 0));
             if (
                     (cursorPoint.X > topLeftPoint.X) &&
@@ -353,8 +353,8 @@ namespace OpenControls.Wpf.DockManager
             toolListBox.ItemContainerStyle = FindResource("SideToolItemStyle") as Style;
             toolListBox.ItemClick += ToolListBox_ItemClick;
             Children.Add(toolListBox);
-            Grid.SetRow(toolListBox, row);
-            Grid.SetColumn(toolListBox, column);
+      SetRow(toolListBox, row);
+      SetColumn(toolListBox, column);
 
             _dictToolListBoxes.Add(windowLocation, toolListBox);
         }
@@ -548,8 +548,8 @@ namespace OpenControls.Wpf.DockManager
         void ILayoutFactory.SetRootPane(Grid grid, out int row, out int column)
         {
             IDockPaneHost.RootPane = grid;
-            row = Grid.GetRow(grid);
-            column = Grid.GetColumn(grid);
+            row = GetRow(grid);
+            column = GetColumn(grid);
         }
 
         #endregion ILayoutFactory
@@ -581,8 +581,8 @@ namespace OpenControls.Wpf.DockManager
                 }
                 _root = value;
                 Children.Add(_root);
-                Grid.SetRow(_root, 1);
-                Grid.SetColumn(_root, 1);
+        SetRow(_root, 1);
+        SetColumn(_root, 1);
             }
         }
 

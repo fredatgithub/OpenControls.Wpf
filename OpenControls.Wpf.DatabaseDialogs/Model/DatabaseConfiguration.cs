@@ -5,7 +5,7 @@
         public DatabaseConfiguration(OpenControls.Wpf.Serialisation.IConfigurationSerialiser iConfigurationSerialiser)
         {
             IConfigurationSerialiser = iConfigurationSerialiser;
-            SelectedDatabaseProvider = Model.DatabaseProvider.SQLite;
+            SelectedDatabaseProvider = DatabaseProvider.SQLite;
 
             SQLServer_UseWindowsAuthentication = true;
             SQLServer_UseLocalServer = true;

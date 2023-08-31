@@ -127,7 +127,7 @@ namespace OpenControls.Wpf.DockManager
             IntPtr intPtr = new IntPtr(0);
 
             var numRemaining = hWnds.Count;
-            OpenControls.Wpf.Utilities.User32.EnumWindows((wnd, param) =>
+      Utilities.User32.EnumWindows((wnd, param) =>
             {
                 if (hWnds.Contains(wnd))
                 {
@@ -156,7 +156,7 @@ namespace OpenControls.Wpf.DockManager
             System.Diagnostics.Trace.Assert(sender is FloatingPane);
 
             Window floatingWindow = sender as Window;
-            Point cursorPositionOnScreen = OpenControls.Wpf.Utilities.Windows.GetCursorPosition();
+            Point cursorPositionOnScreen = Utilities.Windows.GetCursorPosition();
             ISelectablePane previousPane = SelectedPane;
             bool foundSelectedPane = false;
 
@@ -505,13 +505,13 @@ namespace OpenControls.Wpf.DockManager
             newFloatingPane.IViewContainer.AddUserControl(userControl);
 
             IntPtr hWnd = new System.Windows.Interop.WindowInteropHelper(Application.Current.MainWindow).EnsureHandle();
-            OpenControls.Wpf.Utilities.Windows.SendLeftMouseButtonUp(hWnd);
+      Utilities.Windows.SendLeftMouseButtonUp(hWnd);
 
             // Ensure the floated window can be dragged by the user
             hWnd = new System.Windows.Interop.WindowInteropHelper(newFloatingPane).EnsureHandle();
-            OpenControls.Wpf.Utilities.Windows.SendLeftMouseButtonDown(hWnd);
+      Utilities.Windows.SendLeftMouseButtonDown(hWnd);
 
-            Point cursorPositionOnScreen = OpenControls.Wpf.Utilities.Windows.GetCursorPosition();
+            Point cursorPositionOnScreen = Utilities.Windows.GetCursorPosition();
             newFloatingPane.Left = cursorPositionOnScreen.X - 30;
             newFloatingPane.Top = cursorPositionOnScreen.Y - 30;
             newFloatingPane.Width = floatingPane.ActualWidth;

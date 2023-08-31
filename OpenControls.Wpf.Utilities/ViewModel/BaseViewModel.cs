@@ -1,17 +1,17 @@
 ﻿
 namespace OpenControls.Wpf.Utilities.ViewModel
 {
-    public class BaseViewModel : System.ComponentModel.INotifyPropertyChanged
+  public class BaseViewModel : System.ComponentModel.INotifyPropertyChanged
+  {
+    #region INotifyPropertyChanged
+
+    public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+
+    protected virtual void NotifyPropertyChanged(string propertyName)
     {
-        #region INotifyPropertyChanged
-
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void NotifyPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-        }
-
-        #endregion INotifyPropertyChanged
+      PropertyChanged?.Invoke(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
     }
+
+    #endregion INotifyPropertyChanged
+  }
 }

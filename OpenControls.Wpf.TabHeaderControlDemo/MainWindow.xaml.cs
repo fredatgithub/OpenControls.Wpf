@@ -39,7 +39,7 @@ namespace OpenControls.Wpf.TabHeaderControlDemo
 
         public static T FindParent<T>(DependencyObject child) where T : DependencyObject
         {
-            DependencyObject parentObject = System.Windows.Media.VisualTreeHelper.GetParent(child);
+            DependencyObject parentObject = VisualTreeHelper.GetParent(child);
             if (parentObject == null)
             {
                 return null;

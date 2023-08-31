@@ -15,7 +15,7 @@ namespace OpenControls.Wpf.DockManager
     {
         internal FloatingPane(IViewContainer iViewContainer)
         {
-            Tag = System.Guid.NewGuid();
+            Tag = Guid.NewGuid();
             InitializeComponent();
             StateChanged += MainWindowStateChangeRaised;
             _parentContainer.Children.Add(iViewContainer as UIElement);
@@ -25,9 +25,9 @@ namespace OpenControls.Wpf.DockManager
             IViewContainer.TabClosed += IViewContainer_TabClosed;
             IViewContainer.TabMouseDown += IViewContainer_TabMouseDown;
 
-            _gridHeader.SetResourceReference(Grid.BackgroundProperty, "FloatingPaneTitleBarBackground");
-            _textBlockTitle.SetResourceReference(TextBlock.StyleProperty, "FloatingPaneTitleStyle");
-            SetResourceReference(Window.BackgroundProperty, "FloatingPaneBackground");
+            _gridHeader.SetResourceReference(Panel.BackgroundProperty, "FloatingPaneTitleBarBackground");
+            _textBlockTitle.SetResourceReference(StyleProperty, "FloatingPaneTitleStyle");
+            SetResourceReference(BackgroundProperty, "FloatingPaneBackground");
 
             (IViewContainer as ViewContainer).Margin = (Thickness)FindResource("FloatingPanePadding");
 
@@ -197,7 +197,7 @@ namespace OpenControls.Wpf.DockManager
                 // Use a task to detect when the drag ends
                 _dragTask = new Task(delegate
                 {
-                    while (OpenControls.Wpf.Utilities.Windows.IsLeftMouseButtonDown())
+                    while (Utilities.Windows.IsLeftMouseButtonDown())
                     {
                         System.Threading.Thread.Sleep(10);
                     }

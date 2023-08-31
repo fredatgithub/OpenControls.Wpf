@@ -151,11 +151,11 @@ namespace OpenControls.Wpf.DockManager
             if (drag)
             {
                 IntPtr hWnd = new System.Windows.Interop.WindowInteropHelper(Application.Current.MainWindow).EnsureHandle();
-                OpenControls.Wpf.Utilities.Windows.SendLeftMouseButtonUp(hWnd);
+        Windows.SendLeftMouseButtonUp(hWnd);
 
                 // Ensure the floated window can be dragged by the user
                 hWnd = new System.Windows.Interop.WindowInteropHelper(floatingPane).EnsureHandle();
-                OpenControls.Wpf.Utilities.Windows.SendLeftMouseButtonDown(hWnd);
+        Windows.SendLeftMouseButtonDown(hWnd);
             }
 
             Point cursorPositionOnScreen = Windows.ScaleByDpi(Windows.GetCursorPosition());

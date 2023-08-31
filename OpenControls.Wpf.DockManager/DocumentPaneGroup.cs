@@ -14,7 +14,7 @@ namespace OpenControls.Wpf.DockManager
 
             (IViewContainer as DocumentContainer).DisplayGeneralMenu = DisplayGeneralMenu;
 
-            VerticalAlignment = System.Windows.VerticalAlignment.Stretch;
+            VerticalAlignment = VerticalAlignment.Stretch;
             HorizontalAlignment = HorizontalAlignment.Stretch;
 
             ColumnDefinition columnDefinition = new ColumnDefinition();
@@ -37,9 +37,9 @@ namespace OpenControls.Wpf.DockManager
             RowDefinitions[2].Height = new GridLength(Border.BorderThickness.Bottom, GridUnitType.Pixel);
 
             IViewContainer.SelectionChanged += DocumentContainer_SelectionChanged;
-            Grid.SetRow(IViewContainer as System.Windows.UIElement, 1);
-            Grid.SetColumn(IViewContainer as System.Windows.UIElement, 1);
-            Grid.SetColumnSpan(IViewContainer as System.Windows.UIElement, ColumnDefinitions.Count - 2);
+      SetRow(IViewContainer as System.Windows.UIElement, 1);
+      SetColumn(IViewContainer as System.Windows.UIElement, 1);
+      SetColumnSpan(IViewContainer as System.Windows.UIElement, ColumnDefinitions.Count - 2);
 
             IsHighlighted = false;
             IsActive = false;

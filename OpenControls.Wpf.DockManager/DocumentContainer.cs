@@ -10,16 +10,16 @@ namespace OpenControls.Wpf.DockManager
         public DocumentContainer()
         {
             double tabHeaderHeight = (double)FindResource("DocumentPaneTabHeaderHeight");
-            RowDefinitions.Add(new RowDefinition() { Height = new System.Windows.GridLength(tabHeaderHeight, System.Windows.GridUnitType.Pixel) });
-            RowDefinitions.Add(new RowDefinition() { Height = new System.Windows.GridLength(1, System.Windows.GridUnitType.Auto) });
-            RowDefinitions.Add(new RowDefinition() { Height = new System.Windows.GridLength(1, System.Windows.GridUnitType.Star) });
+            RowDefinitions.Add(new RowDefinition() { Height = new System.Windows.GridLength(tabHeaderHeight, GridUnitType.Pixel) });
+            RowDefinitions.Add(new RowDefinition() { Height = new System.Windows.GridLength(1, GridUnitType.Auto) });
+            RowDefinitions.Add(new RowDefinition() { Height = new System.Windows.GridLength(1, GridUnitType.Star) });
 
-            ColumnDefinitions.Add(new ColumnDefinition() { Width = new System.Windows.GridLength(1, System.Windows.GridUnitType.Star) });
-            ColumnDefinitions.Add(new ColumnDefinition() { Width = new System.Windows.GridLength(4, System.Windows.GridUnitType.Pixel) });
-            ColumnDefinitions.Add(new ColumnDefinition() { Width = new System.Windows.GridLength(1, System.Windows.GridUnitType.Auto) });
-            ColumnDefinitions.Add(new ColumnDefinition() { Width = new System.Windows.GridLength(2, System.Windows.GridUnitType.Pixel) });
-            ColumnDefinitions.Add(new ColumnDefinition() { Width = new System.Windows.GridLength(1, System.Windows.GridUnitType.Auto) });
-            ColumnDefinitions.Add(new ColumnDefinition() { Width = new System.Windows.GridLength(2, System.Windows.GridUnitType.Pixel) });
+            ColumnDefinitions.Add(new ColumnDefinition() { Width = new System.Windows.GridLength(1, GridUnitType.Star) });
+            ColumnDefinitions.Add(new ColumnDefinition() { Width = new System.Windows.GridLength(4, GridUnitType.Pixel) });
+            ColumnDefinitions.Add(new ColumnDefinition() { Width = new System.Windows.GridLength(1, GridUnitType.Auto) });
+            ColumnDefinitions.Add(new ColumnDefinition() { Width = new System.Windows.GridLength(2, GridUnitType.Pixel) });
+            ColumnDefinitions.Add(new ColumnDefinition() { Width = new System.Windows.GridLength(1, GridUnitType.Auto) });
+            ColumnDefinitions.Add(new ColumnDefinition() { Width = new System.Windows.GridLength(2, GridUnitType.Pixel) });
 
             CreateTabControl(0, 0);
             TabHeaderControl.ItemContainerStyle = FindResource("DocumentPaneTabItem") as Style;
@@ -27,24 +27,24 @@ namespace OpenControls.Wpf.DockManager
             TabHeaderControl.VerticalAlignment = VerticalAlignment.Bottom;
 
             _gap = new Border();
-            _gap.SetResourceReference(Border.HeightProperty, "DocumentPaneContentBarHeight");
+            _gap.SetResourceReference(HeightProperty, "DocumentPaneContentBarHeight");
             _gap.SetResourceReference(Border.BackgroundProperty, "DocumentPaneContentBarBrush");
             Children.Add(_gap);
-            Grid.SetRow(_gap, 1);
-            Grid.SetColumn(_gap, 0);
-            Grid.SetColumnSpan(_gap, 6);
+      SetRow(_gap, 1);
+      SetColumn(_gap, 0);
+      SetColumnSpan(_gap, 6);
 
             _commandsButton = new Button();
             Children.Add(_commandsButton);
-            Grid.SetRow(_commandsButton, 0);
-            Grid.SetColumn(_commandsButton, 2);
+      SetRow(_commandsButton, 0);
+      SetColumn(_commandsButton, 2);
             _commandsButton.Click += delegate { if (DisplayGeneralMenu != null) DisplayGeneralMenu(); };
             _commandsButton.SetResourceReference(StyleProperty, "DocumentPaneCommandsButtonStyle");
 
             _listButton = new Button();
             Children.Add(_listButton);
-            Grid.SetRow(_listButton, 0);
-            Grid.SetColumn(_listButton, 4);
+      SetRow(_listButton, 0);
+      SetColumn(_listButton, 4);
             _listButton.Click += delegate { Helpers.DisplayItemsMenu(_items, TabHeaderControl, _selectedUserControl); };
             _listButton.SetResourceReference(StyleProperty, "DocumentPaneListButtonStyle");
 
@@ -88,10 +88,10 @@ namespace OpenControls.Wpf.DockManager
 
         protected override void SetSelectedUserControlGridPosition()
         {
-            Grid.SetRow(_selectedUserControl, 3);
-            Grid.SetColumn(_selectedUserControl, 0);
-            Grid.SetColumnSpan(_selectedUserControl, 99);
-            Grid.SetZIndex(_selectedUserControl, 2);
+      SetRow(_selectedUserControl, 3);
+      SetColumn(_selectedUserControl, 0);
+      SetColumnSpan(_selectedUserControl, 99);
+      SetZIndex(_selectedUserControl, 2);
         }
 
         protected override void CheckTabCount()

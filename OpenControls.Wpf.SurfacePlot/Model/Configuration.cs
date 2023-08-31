@@ -6,7 +6,7 @@
         {
             Zoom = 100;
             ZScale = 0.002f;
-            ShadingAlgorithm = Model.ShadingAlgorithm.FixedLevels;
+            ShadingAlgorithm = ShadingAlgorithm.FixedLevels;
             BlueLevel = -64;
             RedLevel = 2048;
             Perspective = 1.0f;

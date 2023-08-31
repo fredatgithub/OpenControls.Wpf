@@ -252,7 +252,7 @@ namespace OpenControls.Wpf.DockManager.Controls
             }
 
             // SelectedIndex is yet to be set so we must find it outselves ... 
-            Point cursorScreenPosition = OpenControls.Wpf.Utilities.Windows.GetCursorPosition();
+            Point cursorScreenPosition = Utilities.Windows.GetCursorPosition();
 
             for (int index = 0; index < _listBox.Items.Count; ++index)
             {

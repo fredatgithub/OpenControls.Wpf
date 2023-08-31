@@ -18,7 +18,7 @@ namespace OpenControls.Wpf.Utilities.ValueConverters
                 throw new InvalidOperationException("The target must be a Thickness");
             }
 
-            OpenControls.Wpf.Utilities.Utilities.Parse(value as string, out Thickness thickness);
+      Utilities.Parse(value as string, out Thickness thickness);
 
             return thickness;
         }

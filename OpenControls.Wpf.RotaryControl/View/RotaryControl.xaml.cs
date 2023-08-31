@@ -57,10 +57,10 @@ namespace OpenControls.Wpf.RotaryControl.View
 
         public Path CreateArcSegment()
         {
-            Point outerArcStartPoint = RotaryControlArc.ComputeCartesianCoordinate(StartAngleInDegrees, Radius);
+            Point outerArcStartPoint = ComputeCartesianCoordinate(StartAngleInDegrees, Radius);
             outerArcStartPoint.Offset(Centre.X, Centre.Y);
 
-            Point outerArcEndPoint = RotaryControlArc.ComputeCartesianCoordinate(StartAngleInDegrees + AngleInDegrees, Radius);
+            Point outerArcEndPoint = ComputeCartesianCoordinate(StartAngleInDegrees + AngleInDegrees, Radius);
             outerArcEndPoint.Offset(Centre.X, Centre.Y);
 
             bool largeArc = AngleInDegrees > 180.0;
@@ -68,10 +68,10 @@ namespace OpenControls.Wpf.RotaryControl.View
 
             double insideRadius = Radius - Thickness;
 
-            Point innerArcStartPoint = RotaryControlArc.ComputeCartesianCoordinate(StartAngleInDegrees, insideRadius);
+            Point innerArcStartPoint = ComputeCartesianCoordinate(StartAngleInDegrees, insideRadius);
             innerArcStartPoint.Offset(Centre.X, Centre.Y);
 
-            Point innerArcEndPoint = RotaryControlArc.ComputeCartesianCoordinate(StartAngleInDegrees + AngleInDegrees, insideRadius);
+            Point innerArcEndPoint = ComputeCartesianCoordinate(StartAngleInDegrees + AngleInDegrees, insideRadius);
             innerArcEndPoint.Offset(Centre.X, Centre.Y);
 
             Size innerArcSize = new Size(insideRadius, insideRadius);
@@ -151,8 +151,8 @@ namespace OpenControls.Wpf.RotaryControl.View
     /// </summary>
     public partial class RotaryControl : UserControl
     {
-        const double OneTwentyDegreesInRadians = (System.Math.PI + System.Math.PI) / 3;
-        const double ThirtyDegreesInRadians = System.Math.PI / 6;
+        const double OneTwentyDegreesInRadians = (Math.PI + Math.PI) / 3;
+        const double ThirtyDegreesInRadians = Math.PI / 6;
 
         private double StartAngleInRadians
         {
@@ -325,8 +325,8 @@ namespace OpenControls.Wpf.RotaryControl.View
 
                 Polyline polyline = new Polyline();
 
-                double cosineMajorAngle = System.Math.Cos(majorAngleInRadians);
-                double sineMajorAngle = System.Math.Sin(majorAngleInRadians);
+                double cosineMajorAngle = Math.Cos(majorAngleInRadians);
+                double sineMajorAngle = Math.Sin(majorAngleInRadians);
 
                 double x = ControlWidth / 2 + majorTickStart * sineMajorAngle;
                 double y = ControlWidth / 2 - majorTickStart * cosineMajorAngle;
@@ -354,8 +354,8 @@ namespace OpenControls.Wpf.RotaryControl.View
 
                         polyline = new Polyline();
 
-                        double cosineMinorAngle = System.Math.Cos(minorAngleInRadians);
-                        double sineMinorAngle = System.Math.Sin(minorAngleInRadians);
+                        double cosineMinorAngle = Math.Cos(minorAngleInRadians);
+                        double sineMinorAngle = Math.Sin(minorAngleInRadians);
 
                         x = ControlWidth / 2 + minorTickStart * sineMinorAngle;
                         y = ControlWidth / 2 - minorTickStart * cosineMinorAngle;
@@ -403,7 +403,7 @@ namespace OpenControls.Wpf.RotaryControl.View
             double dY = pointInControl.Y - _ellipseOuterDial.Height / 2;
 
             // The angle from the 12 o'clock position
-            double angleInDegrees = -(360 * System.Math.Atan(dX / dY)) / (System.Math.PI + System.Math.PI);
+            double angleInDegrees = -(360 * Math.Atan(dX / dY)) / (Math.PI + Math.PI);
 
             if (dY > 0)
             {
@@ -478,8 +478,8 @@ namespace OpenControls.Wpf.RotaryControl.View
             // The angle of the marker
             double majorAngleInRadians = StartAngleInRadians + (arcAngleInRadians * (Value - MinimumValue)) / (MajorTickIncrement * (NumberOfMajorTicks - 1));
 
-            double x = offsetFromCentre * System.Math.Sin(majorAngleInRadians);
-            double y = -offsetFromCentre * System.Math.Cos(majorAngleInRadians);
+            double x = offsetFromCentre * Math.Sin(majorAngleInRadians);
+            double y = -offsetFromCentre * Math.Cos(majorAngleInRadians);
 
             _markerTranslation.X = x;
             _markerTranslation.Y = y;
@@ -634,7 +634,7 @@ namespace OpenControls.Wpf.RotaryControl.View
 
         [Bindable(true)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public static readonly DependencyProperty FontBrushProperty = DependencyProperty.Register("FontBrush", typeof(Brush), typeof(RotaryControl), new FrameworkPropertyMetadata(System.Windows.Media.Brushes.Black, new PropertyChangedCallback(OnFontBrushChanged)));
+        public static readonly DependencyProperty FontBrushProperty = DependencyProperty.Register("FontBrush", typeof(Brush), typeof(RotaryControl), new FrameworkPropertyMetadata(Brushes.Black, new PropertyChangedCallback(OnFontBrushChanged)));
 
         public Brush FontBrush
         {

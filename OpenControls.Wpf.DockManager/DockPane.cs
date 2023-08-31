@@ -18,11 +18,11 @@ namespace OpenControls.Wpf.DockManager
             Border = new Border();
             Border.Background = Brushes.Transparent;
             Border.IsHitTestVisible = false;
-            Grid.SetRow(Border, 0);
-            Grid.SetRowSpan(Border, 99);
-            Grid.SetColumn(Border, 0);
-            Grid.SetColumnSpan(Border, 99);
-            Grid.SetZIndex(Border, -1);
+      SetRow(Border, 0);
+      SetRowSpan(Border, 99);
+      SetColumn(Border, 0);
+      SetColumnSpan(Border, 99);
+      SetZIndex(Border, -1);
             Children.Add(Border);
         }
 

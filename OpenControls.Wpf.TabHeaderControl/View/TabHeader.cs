@@ -19,7 +19,7 @@ namespace OpenControls.Wpf.TabHeaderControl
             _mouseLeftButtonDown = true;
 
             // SelectedIndex is yet to be set so we must find it outselves ... 
-            Point cursorScreenPosition = OpenControls.Wpf.Utilities.Windows.GetCursorPosition();
+            Point cursorScreenPosition = Utilities.Windows.GetCursorPosition();
             _dragIndex = GetListBoxItemIndex(cursorScreenPosition);
         }
 
@@ -85,7 +85,7 @@ namespace OpenControls.Wpf.TabHeaderControl
                 return;
             }
 
-            Point cursorScreenPosition = OpenControls.Wpf.Utilities.Windows.GetCursorPosition();
+            Point cursorScreenPosition = Utilities.Windows.GetCursorPosition();
             int selectedIndex = GetListBoxItemIndex(cursorScreenPosition);
 
             if ((selectedIndex < 0) || (selectedIndex >= Items.Count) || (selectedIndex == _dragIndex))
@@ -100,7 +100,7 @@ namespace OpenControls.Wpf.TabHeaderControl
                 {
                     // Cancel further drag processing until we get the next mouse left button down
                     _mouseLeftButtonDown = false;
-                    System.Windows.Input.Mouse.Capture(this, CaptureMode.None);
+          Mouse.Capture(this, CaptureMode.None);
                     System.Diagnostics.Debug.WriteLine("FloatTabRequest: count = " + Items.Count);
                     FloatTabRequest?.Invoke(this, null);
                 }

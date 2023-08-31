@@ -34,7 +34,7 @@ namespace OpenControls.WinForms.SurfacePlotterDemo
         {
             get
             {
-                return System.Environment.Is64BitOperatingSystem ? @"SOFTWARE\Wow6432Node\OpenControls.Wpf.SurfacePlotDemo\RawDataSettings" : @"SOFTWARE\OpenControls.Wpf.SurfacePlotDemo\RawDataSettings";
+                return Environment.Is64BitOperatingSystem ? @"SOFTWARE\Wow6432Node\OpenControls.Wpf.SurfacePlotDemo\RawDataSettings" : @"SOFTWARE\OpenControls.Wpf.SurfacePlotDemo\RawDataSettings";
             }
         }
 
@@ -64,7 +64,7 @@ namespace OpenControls.WinForms.SurfacePlotterDemo
             int counter = 0;
             float zMax = 150;
             float zMin = -150;
-            float scale = 2f * (float)System.Math.PI / (float)XCount;
+            float scale = 2f * (float)Math.PI / (float)XCount;
 
             List<List<float>> srcData = new List<List<float>>();
             for (int i = 0; i < XCount; ++i)
@@ -73,7 +73,7 @@ namespace OpenControls.WinForms.SurfacePlotterDemo
                 srcData.Add(list);
                 for (int j = 0; j < YCount; ++j)
                 {
-                    list.Add((float)(zMax * System.Math.Sin(scale * i) * System.Math.Sin(scale * j)));
+                    list.Add((float)(zMax * Math.Sin(scale * i) * Math.Sin(scale * j)));
                 }
             }
 
@@ -104,7 +104,7 @@ namespace OpenControls.WinForms.SurfacePlotterDemo
 
         private void buttonSettings_Click(object sender, EventArgs e)
         {
-            OpenControls.Wpf.SurfacePlot.Exports.ShowConfigurationDialog(_configuration);
+      Wpf.SurfacePlot.Exports.ShowConfigurationDialog(_configuration);
             _configuration.Save(IConfigurationSerialiser);
         }
     }

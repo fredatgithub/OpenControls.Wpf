@@ -18,7 +18,7 @@ namespace OpenControls.Wpf.Utilities.ValueConverters
                 throw new InvalidOperationException("The target must be a CornerRadius");
             }
 
-            OpenControls.Wpf.Utilities.Utilities.Parse(value as string, out CornerRadius cornerRadius);
+      Utilities.Parse(value as string, out CornerRadius cornerRadius);
 
             return cornerRadius;
         }

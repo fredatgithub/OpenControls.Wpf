@@ -12,7 +12,7 @@ namespace OpenControls.Wpf.SurfacePlot
     {
         //private static NLog.Logger _logger = NLog.LogManager.GetCurrentClassLogger();
 
-        public SurfacePlotControl() : base(new OpenTK.Graphics.GraphicsMode(OpenTK.Graphics.ColorFormat.Empty, 24), 3, 1, OpenTK.Graphics.GraphicsContextFlags.Default)
+        public SurfacePlotControl() : base(new OpenTK.Graphics.GraphicsMode(ColorFormat.Empty, 24), 3, 1, GraphicsContextFlags.Default)
         {
             _verticesLock = new object();
         }
@@ -412,12 +412,12 @@ namespace OpenControls.Wpf.SurfacePlot
 
             switch (e.KeyCode)
             {
-                case System.Windows.Forms.Keys.Oemplus:
-                case System.Windows.Forms.Keys.Add:
+                case Keys.Oemplus:
+                case Keys.Add:
                     --Zoom;
                     break;
-                case System.Windows.Forms.Keys.OemMinus:
-                case System.Windows.Forms.Keys.Subtract:
+                case Keys.OemMinus:
+                case Keys.Subtract:
                     ++Zoom;
                     break;
                 default:
@@ -432,31 +432,31 @@ namespace OpenControls.Wpf.SurfacePlot
 
             switch (e.KeyCode)
             {
-                case System.Windows.Forms.Keys.Up:
-                case System.Windows.Forms.Keys.NumPad8:
+                case Keys.Up:
+                case Keys.NumPad8:
                     _xRotationInDegrees += RotationIncrementInDegrees;
                     _xRotationInDegrees %= 360;
                     break;
-                case System.Windows.Forms.Keys.Down:
-                case System.Windows.Forms.Keys.NumPad2:
+                case Keys.Down:
+                case Keys.NumPad2:
                     _xRotationInDegrees -= RotationIncrementInDegrees;
                     _xRotationInDegrees %= 360;
                     break;
-                case System.Windows.Forms.Keys.Right:
-                case System.Windows.Forms.Keys.NumPad6:
+                case Keys.Right:
+                case Keys.NumPad6:
                     _yRotationInDegrees += RotationIncrementInDegrees;
                     _yRotationInDegrees %= 360;
                     break;
-                case System.Windows.Forms.Keys.Left:
-                case System.Windows.Forms.Keys.NumPad4:
+                case Keys.Left:
+                case Keys.NumPad4:
                     _yRotationInDegrees -= RotationIncrementInDegrees;
                     _yRotationInDegrees %= 360;
                     break;
-                case System.Windows.Forms.Keys.PageUp:
+                case Keys.PageUp:
                     _zRotationInDegrees += RotationIncrementInDegrees;
                     _zRotationInDegrees %= 360;
                     break;
-                case System.Windows.Forms.Keys.PageDown:
+                case Keys.PageDown:
                     _zRotationInDegrees -= RotationIncrementInDegrees;
                     _zRotationInDegrees %= 360;
                     break;
@@ -1036,22 +1036,22 @@ namespace OpenControls.Wpf.SurfacePlot
                 GetCurrentRotation(out rotation);
                 rotation.Transpose();
 
-                textModelView = Matrix4.CreateRotationY((float)System.Math.PI) * rotation * translation * _modelview;
+                textModelView = Matrix4.CreateRotationY((float)Math.PI) * rotation * translation * _modelview;
                 textModelView = Matrix4.CreateTranslation(0, 0, -xRange / 2f) * textModelView;
                 GL.MatrixMode(MatrixMode.Modelview);
                 GL.LoadMatrix(ref textModelView);
 
                 float width = _textRenderer.MeasureTextHeight();
-                float x = 0.5f * (float)System.Math.Sqrt(xMax * xMax + yMax * yMax) + 1f * width;
+                float x = 0.5f * (float)Math.Sqrt(xMax * xMax + yMax * yMax) + 1f * width;
                 switch (_iConfiguration.ViewProjection)
                 {
                     case ViewProjection.ThreeDimensional:
-                        x = 0.5f * (float)System.Math.Sqrt(xMax * xMax + yMax * yMax) + 1f * width;
+                        x = 0.5f * (float)Math.Sqrt(xMax * xMax + yMax * yMax) + 1f * width;
                         x += _zAxisLabels.MaxLabelLength;
                         break;
                     case ViewProjection.BirdsEye_90:
                     case ViewProjection.BirdsEye_270:
-                        x = 0.5f * (float)System.Math.Max(xMax, yMax) + 3f * width;
+                        x = 0.5f * (float)Math.Max(xMax, yMax) + 3f * width;
                         x += _zAxisLabels.MaxLabelLength;
                         if (_iConfiguration.ShowAxesTitles)
                         {
@@ -1062,7 +1062,7 @@ namespace OpenControls.Wpf.SurfacePlot
                     case ViewProjection.Orthographic_Side:
                     case ViewProjection.BirdsEye_0:
                     case ViewProjection.BirdsEye_180:
-                        x = 0.5f * (float)System.Math.Max(xMax, yMax) + 3f * width;
+                        x = 0.5f * (float)Math.Max(xMax, yMax) + 3f * width;
                         break;
                 }
 

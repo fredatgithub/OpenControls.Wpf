@@ -629,10 +629,10 @@ namespace OpenControls.Wpf.Carousel
                 element = GetChild(index);
 
                 double x = -canvasHalfWidth * sineAngle - (double.IsNaN(canvasHalfHeight) ? 0.0 : canvasHalfHeight / 100.0) * cosineAngle * TiltInDegrees;
-                Canvas.SetLeft(element, x + ActualWidth / 2.0 - elementHalfWidth);
+        SetLeft(element, x + ActualWidth / 2.0 - elementHalfWidth);
 
                 double y = canvasHalfHeight * sineAngle - (double.IsNaN(canvasHalfWidth) ? 0.0 : canvasHalfWidth / 100.0) * cosineAngle * TiltInDegrees;
-                Canvas.SetTop(element, y + ActualHeight / 2.0 - elementHalfHeight);
+        SetTop(element, y + ActualHeight / 2.0 - elementHalfHeight);
 
                 ScaleTransform scale = element.RenderTransform as ScaleTransform;
                 if (scale == null)
@@ -645,7 +645,7 @@ namespace OpenControls.Wpf.Carousel
                 scale.CenterY = elementHalfHeight;
                 double scaledSize = GetScaledSize(degrees);
                 scale.ScaleX = scale.ScaleY = scaledSize * scaledSize;
-                Canvas.SetZIndex(element, GetZValue(degrees));
+        SetZIndex(element, GetZValue(degrees));
 
                 SetOpacity(element, degrees);
             }
@@ -750,7 +750,7 @@ namespace OpenControls.Wpf.Carousel
                 }
                 else
                 {
-                    if (Canvas.GetZIndex(child as FrameworkElement) > Canvas.GetZIndex(frameworkElement))
+                    if (GetZIndex(child as FrameworkElement) > GetZIndex(frameworkElement))
                     {
                         frameworkElement = child as FrameworkElement;
                     }
